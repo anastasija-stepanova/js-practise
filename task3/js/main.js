@@ -6,22 +6,21 @@
 
 function printEvenByFor(max, min)
 {
-    if (min === undefined || null)
+    if (min === undefined || min === null)
     {
         min = 2;
     }
-    for (var i = min; i <= max; i++)
+
+    var i = (min % 2) ? min + 1 : min;
+    for (i; i <= max; i += 2)
     {
-        if (i % 2 == 0)
-        {
-            console.log(i);
-        }
+        console.log(i);
     }
 }
 
 function printEvenByWhile(max, min)
 {
-    if (min === undefined || null)
+    if (min === undefined || min === null)
     {
         min = 2;
     }

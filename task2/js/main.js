@@ -2,35 +2,32 @@
 {
     var userLogin = prompt('Enter your login, please', '');
 
-    if (userLogin == null || '')
+    if (userLogin == null || userLogin == '')
     {
-        alert('Sign-in canceled')
+        alert('Sign-in canceled');
     }
     else
     {
-        if (userLogin != 'Admin')
+        if (userLogin.toLowerCase() != 'admin')
         {
-            alert('I don`t know you')
+            alert('I don`t know you');
         }
         else
         {
-            if (userLogin == 'Admin')
+            var userPassword = prompt('Enter your password, please', '');
+            if (userPassword == null || userPassword == '')
             {
-                var userPassword = prompt('Enter your password, please', '');
-                if (userPassword == null || '')
+                alert('Sign-in canceled');
+            }
+            else
+            {
+                if (userPassword == 'Black Lordship')
                 {
-                    alert('Sign-in canceled')
+                    alert('Welcome!');
                 }
                 else
                 {
-                    if (userPassword == 'Black Lordship')
-                    {
-                        alert('Welcome!')
-                    }
-                    else
-                    {
-                        alert('Password is incorrect')
-                    }
+                    alert('Password is incorrect');
                 }
             }
         }
