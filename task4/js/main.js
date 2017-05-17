@@ -1,37 +1,29 @@
-(function ()
-{
-    console.log(printPrime(-2, 10));
+(function () {
+  printPrime(2, 10);
 })();
 
-function isPrime(number)
-{
-    var NUMBER_ONE = 1;
-    var FIRST_PRIME = 2;
+function isPrime(number) {
+  let NUMBER_ONE = 1;
+  let FIRST_PRIME = 2;
 
-    if (number == NUMBER_ONE)
-    {
-        return false;
-    }
+  if (number == NUMBER_ONE) {
+    return false;
+  }
 
-    for (var i = FIRST_PRIME; i * i <= number; i++)
-    {
-        if (number % i == 0)
-        {
-            return false;
-        }
+  for (let i = FIRST_PRIME; i * i <= number; i++) {
+    if (number % i == 0) {
+      return false;
     }
-    return true;
+  }
+  return true;
 }
 
-function printPrime(min, max)
-{
-    min = (min < 2) ? 2 : min;
+function printPrime(min, max) {
+  min = Math.max(min, 2);
 
-    for (var i = min; i <= max; i++)
-    {
-        if (isPrime(i) == true)
-        {
-            console.log(i)
-        }
+  for (let i = min; i <= max; i++) {
+    if (isPrime(i) == true) {
+      console.log(i);
     }
+  }
 }

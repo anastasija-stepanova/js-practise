@@ -1,6 +1,5 @@
-(function ()
-{
-    var planetName = 'Earth';
-    var userName = 'Petr';
-    console.log('Planet name:', planetName, ',', 'user name:', userName);
+(function () {
+  let planetName = 'Earth';
+  let userName = 'Petr';
+  console.log('Planet name:', planetName, ',', 'user name:', userName);
 })();
