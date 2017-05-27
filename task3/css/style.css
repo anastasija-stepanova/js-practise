@@ -1,0 +1,23 @@
+.feedback_block
+{
+    max-width: 500px;
+    margin: 0 auto;
+    vertical-align: middle;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 3px;
+    text-align: center;
+    box-shadow: 1px 1px 10px;
+}
+
+.message,
+.result
+{
+    margin: 10px 0;
+}
+
+.result
+{
+    min-height: 20px;
+    font-size: 16px;
+}
