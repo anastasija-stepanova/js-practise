@@ -23,17 +23,17 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="30" />
+            <state relative-caret-position="-1892">
+              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/include/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
@@ -309,12 +309,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495882349555</updated>
-      <workItem from="1495882351399" duration="32542000" />
+      <workItem from="1495882351399" duration="32972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32542000" />
+    <option name="totallyTimeSpent" value="32972000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
@@ -407,25 +407,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/include/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding>
-            <marker date="1495974602652" expanded="true" signature="186:227" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="186:228" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="186:240" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="186:241" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="186:242" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="353:431" ph="UPDATE list_... " />
-            <marker date="1495974602652" expanded="true" signature="469:553" ph="INSERT INTO list_items... " />
-            <marker date="1495974602652" expanded="true" signature="677:719" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="677:732" ph="SELECT * FRO... list_items" />
-            <marker date="1495974602652" expanded="true" signature="677:733" ph="SELECT * FRO... list_items" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/include/common.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="44">
@@ -452,9 +433,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="-1892">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="506">
+          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding>
+            <marker date="1495974602652" expanded="true" signature="186:227" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="186:228" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="186:240" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="186:241" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="186:242" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="353:431" ph="UPDATE list_... " />
+            <marker date="1495974602652" expanded="true" signature="469:553" ph="INSERT INTO list_items... " />
+            <marker date="1495974602652" expanded="true" signature="677:719" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="677:732" ph="SELECT * FRO... list_items" />
+            <marker date="1495974602652" expanded="true" signature="677:733" ph="SELECT * FRO... list_items" />
+          </folding>
         </state>
       </provider>
     </entry>
