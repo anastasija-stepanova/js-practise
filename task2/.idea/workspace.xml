@@ -23,21 +23,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1892">
-              <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+            <state relative-caret-position="286">
+              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/include/index.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="506">
-              <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+              <caret line="23" column="1" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="1" />
               <folding>
                 <marker date="1495974602652" expanded="true" signature="186:227" ph="SELECT * FRO... list_items" />
                 <marker date="1495974602652" expanded="true" signature="186:228" ph="SELECT * FRO... list_items" />
@@ -49,6 +49,32 @@
                 <marker date="1495974602652" expanded="true" signature="677:719" ph="SELECT * FRO... list_items" />
                 <marker date="1495974602652" expanded="true" signature="677:732" ph="SELECT * FRO... list_items" />
                 <marker date="1495974602652" expanded="true" signature="677:733" ph="SELECT * FRO... list_items" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_list.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/get_list.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+              <folding>
+                <marker date="1495975928865" expanded="true" signature="162:218" ph="SELECT * FRO... list_items" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="save_list.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/include/save_list.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+              <folding>
+                <marker date="1495975891058" expanded="true" signature="186:242" ph="SELECT * FRO... list_items" />
+                <marker date="1495975891058" expanded="true" signature="353:431" ph="UPDATE list_... " />
+                <marker date="1495975891058" expanded="true" signature="469:553" ph="INSERT INTO list_items... " />
               </folding>
             </state>
           </provider>
@@ -68,7 +94,7 @@
         <entry file="file://$PROJECT_DIR$/include/database.inc.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="726">
-              <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+              <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -78,7 +104,7 @@
         <entry file="file://$PROJECT_DIR$/include/config.inc.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="110">
-              <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+              <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -88,7 +114,7 @@
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ae01dfc8-4583-4580-9f8f-93ca32e1d2df/console.sql">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="22">
-              <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -113,8 +139,12 @@
         <option value="$PROJECT_DIR$/include/config.inc.php" />
         <option value="$PROJECT_DIR$/include/database.inc.php" />
         <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/include/index.php" />
+        <option value="$USER_HOME$/js-practise/task2/include/save_list.php" />
+        <option value="$USER_HOME$/js-practise/task2/include/get_list.php" />
+        <option value="$PROJECT_DIR$/include/save_list.php" />
+        <option value="$PROJECT_DIR$/include/get_list.php" />
+        <option value="$PROJECT_DIR$/js/main.js" />
       </list>
     </option>
   </component>
@@ -246,6 +276,7 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/SQL Dialects" value="MySQL" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
@@ -309,12 +340,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495882349555</updated>
-      <workItem from="1495882351399" duration="32972000" />
+      <workItem from="1495882351399" duration="33885000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32972000" />
+    <option name="totallyTimeSpent" value="33885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
@@ -386,7 +417,7 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/ae01dfc8-4583-4580-9f8f-93ca32e1d2df/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="22">
-          <caret line="1" column="16" lean-forward="true" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -418,7 +449,7 @@
     <entry file="file://$PROJECT_DIR$/include/database.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
-          <caret line="33" column="17" lean-forward="true" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
+          <caret line="33" column="17" lean-forward="false" selection-start-line="33" selection-start-column="17" selection-end-line="33" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -426,23 +457,57 @@
     <entry file="file://$PROJECT_DIR$/include/config.inc.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
-          <caret line="5" column="26" lean-forward="true" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <caret line="5" column="26" lean-forward="false" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
+    <entry file="file://$USER_HOME$/js-practise/task2/include/get.list.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1892">
-          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/js-practise/task2/include/save_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <marker date="1495975486965" expanded="true" signature="186:242" ph="SELECT * FRO... list_items" />
+            <marker date="1495975486965" expanded="true" signature="353:431" ph="UPDATE list_... " />
+            <marker date="1495975486965" expanded="true" signature="469:553" ph="INSERT INTO list_items... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/js-practise/task2/include/get_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <marker date="1495975632092" expanded="true" signature="162:218" ph="SELECT * FRO... list_items" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/save_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="1" lean-forward="true" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <marker date="1495975891058" expanded="true" signature="186:242" ph="SELECT * FRO... list_items" />
+            <marker date="1495975891058" expanded="true" signature="353:431" ph="UPDATE list_... " />
+            <marker date="1495975891058" expanded="true" signature="469:553" ph="INSERT INTO list_items... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/include/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <caret line="23" column="1" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="23" selection-end-column="1" />
           <folding>
             <marker date="1495974602652" expanded="true" signature="186:227" ph="SELECT * FRO... list_items" />
             <marker date="1495974602652" expanded="true" signature="186:228" ph="SELECT * FRO... list_items" />
@@ -455,6 +520,24 @@
             <marker date="1495974602652" expanded="true" signature="677:732" ph="SELECT * FRO... list_items" />
             <marker date="1495974602652" expanded="true" signature="677:733" ph="SELECT * FRO... list_items" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/include/get_list.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+          <folding>
+            <marker date="1495975928865" expanded="true" signature="162:218" ph="SELECT * FRO... list_items" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>

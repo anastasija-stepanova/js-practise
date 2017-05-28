@@ -6,7 +6,7 @@ let elementsCount = 1;
   window.onload = function () {
     let param = 'action=get';
     let xhr = new XMLHttpRequest();
-    ajax.open(xhr, 'POST', 'include/index.php');
+    ajax.open(xhr, 'POST', 'include/get_list.php');
     ajax.send(xhr, param);
     ajax.getResponse(xhr);
   };
@@ -95,7 +95,7 @@ function saveList() {
     };
     let jsonString = 'items_values=' + JSON.stringify(keyValue);
     let xhr = new XMLHttpRequest();
-    ajax.open(xhr, 'POST', 'include/index.php');
+    ajax.open(xhr, 'POST', 'include/save_list.php');
     ajax.send(xhr, jsonString);
     ajax.getResponse(xhr);
   });
