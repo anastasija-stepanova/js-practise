@@ -1,0 +1,88 @@
+.hidden
+{
+    display: none;
+}
+
+.app_container
+{
+    margin: 30px auto;
+    background: #fff;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.27);
+    transition: height 1s;
+    max-width: 500px;
+    padding: 30px 15px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.app_title
+{
+    margin: 0;
+    padding: 10px 15px;
+    font-size: 24px;
+    color: #739075;
+}
+
+.list
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+.list .item
+{
+    list-style-type: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.11);
+    padding: 15px 15px 5px;
+    cursor: pointer;
+}
+
+.button
+{
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.23);
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 3px 5px;
+    border-radius: 3px;
+    transition: 0.3s;
+}
+
+.button:hover
+{
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.add_new_button
+{
+    background: #CDDC39;
+}
+
+.clear_list_button
+{
+    background: #FFEB3B;
+}
+
+.remove_item_button
+{
+    background: #FF5722;
+}
+
+.button_container
+{
+    padding-top: 15px;
+}
+
+.textbox
+{
+    padding: 10px 15px;
+    border-radius: 3px;
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 15px auto 0;
+    border: 1px solid rgba(0, 0, 0, 0.28);
+}
