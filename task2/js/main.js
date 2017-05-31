@@ -1,44 +1,22 @@
-let elementsCount = 1;
-(function () {
+window.onload = function() {
   let list = document.getElementById('list');
   let input = document.getElementById('input');
 
-  window.onload = function () {
-    let param = 'action=get';
-    let xhr = new XMLHttpRequest();
-    ajax.open(xhr, 'POST', 'include/get_list.php');
-    ajax.send(xhr, param);
-    ajax.getResponse(xhr);
-  };
   clickAddButton(list);
   clickCleanButton();
   addElementByEnter(list, input);
   clickRemoveButton(list);
   saveList();
-})();
+};
 
-let ajax = {};
-ajax.open = function (xhr, method, path, param) {
-  if (param) {
-    xhr.open(method, path + param, true);
-  } else {
-    xhr.open(method, path, true);
-  }
-};
-ajax.send = function (xhr, body) {
+let ajaxPost = function(path, param) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('POST', path, true);
   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send(body);
-};
-ajax.getResponse = function (xhr) {
+  xhr.send(param);
   const doneState = 4;
-  const statusOk = 200;
-  xhr.onreadystatechange = function () {
+  xhr.onreadystatechange = function() {
     if (xhr.readyState == doneState) {
-      if (this.status != statusOk) {
-        console.log('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
-      } else {
-        console.log('200 OK');
-      }
       if (xhr.responseText) {
         showResponse(xhr);
       }
@@ -46,12 +24,29 @@ ajax.getResponse = function (xhr) {
   }
 };
 
+let arrayItems = document.getElementsByClassName('item');
+function getArrayValues() {
+  let arrayValueItem = [];
+  for (let i = 0; i < arrayItems.length; i++) {
+    arrayValueItem.push(arrayItems[i]['innerText']);
+  }
+  return arrayValueItem;
+}
+
+for (let i = 0; i < arrayItems.length; i++) {
+  arrayItems[i].addEventListener('click', function() {
+    showElement(document.getElementById('removeItemButton'));
+  });
+}
+
 function clickAddButton(list) {
+  let elementsCount = arrayItems.length + 1;
   let addItemButton = document.getElementById('addItemButton');
-  addItemButton.addEventListener('click', function (event) {
+  addItemButton.addEventListener('click', function(event) {
     event.preventDefault();
     //noinspection JSUnresolvedVariable
-    addListItem(list, input.value);
+    addListItem(list, input.value, elementsCount);
+    elementsCount++;
     //noinspection JSUnresolvedVariable
     input.value = '';
   });
@@ -59,27 +54,28 @@ function clickAddButton(list) {
 
 function clickCleanButton() {
   let clearListButton = document.getElementById('clearListButton');
-  clearListButton.addEventListener('click', function (event) {
+  clearListButton.addEventListener('click', function(event) {
     event.preventDefault();
     //noinspection JSUnresolvedVariable
     clearElement(list);
-    elementsCount = 1;
   });
 }
 
 function addElementByEnter(list, input) {
-  input.addEventListener('keydown', function (event) {
-    if (event.keyCode == 13) {    // Enter
-      event.preventDefault();
-      addListItem(list, input.value);
-      input.value = '';
-    }
-  });
+  if (input != '') {
+    input.addEventListener('keydown', function(event) {
+      if (event.keyCode == 13) {    // Enter
+        event.preventDefault();
+        addListItem(list, input.value);
+        input.value = '';
+      }
+    });
+  }
 }
 
 function clickRemoveButton(list) {
   let removeItemButton = document.getElementById('removeItemButton');
-  removeItemButton.addEventListener('click', function (event) {
+  removeItemButton.addEventListener('click', function(event) {
     event.preventDefault();
     removeChecked(list);
     hideElement(removeItemButton);
@@ -88,48 +84,33 @@ function clickRemoveButton(list) {
 
 function saveList() {
   let saveListButton = document.getElementById('saveListButton');
-  saveListButton.addEventListener('click', function (event) {
+  saveListButton.addEventListener('click', function(event) {
     event.preventDefault();
     let keyValue = {
-      'value': arrayValueItem
+      'value': getArrayValues()
     };
     let jsonString = 'items_values=' + JSON.stringify(keyValue);
-    let xhr = new XMLHttpRequest();
-    ajax.open(xhr, 'POST', 'include/save_list.php');
-    ajax.send(xhr, jsonString);
-    ajax.getResponse(xhr);
+    ajaxPost('include/save_list.php', jsonString);
   });
 }
 
 function showResponse(xhr) {
-  JSON.parse(xhr.responseText)['value'].forEach(function (item) {
+  JSON.parse(xhr.responseText)['value'].forEach(function(item) {
     //noinspection JSUnresolvedVariable
     addListItem(list, item);
   });
 }
 
-let arrayValueItem = [];
-
-function addListItem(list, inputValue) {
+function addListItem(list, inputValue, itemsCount) {
   let newLi = document.createElement('li');
   newLi.classList.add('item');
-  let itemsCount = elementsCount++;
-
   newLi.innerHTML = (inputValue) ? itemTemplate(inputValue) : itemTemplate('Item ' + itemsCount);
+  let valueItem = (inputValue) ? inputValue : 'Item ' + itemsCount;
 
-  let valueItem;
-  if (inputValue) {
-    valueItem = inputValue
-  } else {
-    valueItem = 'Item ' + itemsCount
-  }
-
-  arrayValueItem.push(valueItem);
-
-  newLi.addEventListener('click', function () {
+  getArrayValues().push(valueItem);
+  newLi.addEventListener('click', function() {
     showElement(document.getElementById('removeItemButton'));
   });
-
   list.appendChild(newLi);
 }
 
@@ -139,24 +120,24 @@ function itemTemplate(inner) {
 
 function clearElement(element) {
   element.innerHTML = '';
-  arrayValueItem = [];
+  getArrayValues();
 }
 
 function removeChecked(list) {
   let items = list.getElementsByClassName('item');
-  let arr = [];
+  let checkedArray = [];
 
   for (let i = 0; i < items.length; i++) {
     let input = items[i].getElementsByTagName('input')[0];
     if (input.checked) {
       items[i].classList.add('checked');
-      arr[i] = 'checked';
+      checkedArray[i] = 'checked';
     }
   }
 
-  for (let i = arrayValueItem.length; i >= 0; i--) {
-    if (arr[i] == 'checked') {
-      arrayValueItem.splice(i, 1);
+  for (let i = getArrayValues().length; i >= 0; i--) {
+    if (checkedArray[i] == 'checked') {
+      getArrayValues().splice(i, 1);
     }
   }
 

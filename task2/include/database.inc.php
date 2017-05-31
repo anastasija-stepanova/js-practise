@@ -1,28 +1,23 @@
 <?php
-$connect = null;
 function dbConnect()
 {
-    global $connect;
-    $connect = mysqli_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
-    $error = mysqli_connect_error();
-    if ($error)
-    {
-        die('Unable to connect to database');
-    }
+    $connection = mysqli_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
+    return $connection;
 }
 
 function dbQuery($query)
 {
-    global $connect;
-    $result = mysqli_query($connect, $query);
-    return ($result != false);
+    $connection = dbConnect();
+    $result = mysqli_query($connection, $query);
+    mysqli_close($connection);
+    return $result;
 }
 
 function dbQueryGetResult($query)
 {
-    global $connect;
-    $data = array();
-    $result = mysqli_query($connect, $query);
+    $connection = dbConnect();
+    $data = [];
+    $result = mysqli_query($connection, $query);
     if ($result)
     {
         while ($row = mysqli_fetch_assoc($result))
@@ -31,11 +26,13 @@ function dbQueryGetResult($query)
         }
         mysqli_free_result($result);
     }
+    mysqli_close($connection);
     return $data;
 }
 
 function dbSelect($dbName)
 {
-    global $connect;
-    mysqli_select_db($connect, $dbName);
+    $connection = dbConnect();
+    mysqli_select_db($connection, $dbName);
+    mysqli_close($connection);
 }
