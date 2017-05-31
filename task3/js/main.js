@@ -1,27 +1,33 @@
-(function () {
-  include('js/ajax.js');
+(function() {
   let feedbackForm = document.getElementById('feedbackForm');
-  feedbackForm.addEventListener('submit', function (event) {
+  feedbackForm.addEventListener('submit', function(event) {
     event.preventDefault();
 
     let textBox = document.getElementById('textBox');
     let userName = textBox.value;
     let nameParam = '?name=' + userName;
-    let xhr = new XMLHttpRequest();
-    ajax.open(xhr, 'GET', 'include/users.php', nameParam);
-    ajax.send(xhr);
-    ajax.getResponse(xhr);
+    ajaxGet('include/users.php', nameParam);
   });
 })();
 
-function include(url) {
-  let script = document.createElement('script');
-  script.src = url;
-  document.getElementsByTagName('head')[0].appendChild(script);
-}
+let ajaxGet = function(path, param) {
+  let xhr = new XMLHttpRequest();
+  xhr.open('GET', path + param, true);
+  xhr.send();
+  const doneState = 4;
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == doneState) {
+      if (xhr.responseText) {
+        showResponse(xhr);
+      }
+    }
+  }
+};
 
 function showResponse(xhr) {
   let textBox = document.getElementById('textBox');
   textBox.value = '';
   document.getElementById('result').innerHTML = xhr.responseText;
 }
+
+
