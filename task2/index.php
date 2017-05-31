@@ -12,9 +12,8 @@ if ($data && $data[0] && $data[0]['item_value'])
         $list .= "<li class='item'><label><input type='checkbox'>{$decode->value[$i]}</label></li>";
     }
 }
-
 $vars =
-[
-    '[[$list]]' => $list
-];
+    [
+        '[[$list]]' => $list
+    ];
 loadTemplate('layout.tpl', $vars);
