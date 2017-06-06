@@ -1,12 +1,19 @@
 window.onload = function() {
   let list = document.getElementById('list');
   let input = document.getElementById('input');
+  let arrayItems = document.getElementsByClassName('item');
 
-  clickAddButton(list);
-  clickCleanButton();
+  for (let i = 0; i < arrayItems.length; i++) {
+    arrayItems[i].addEventListener('click', function() {
+      showElement(document.getElementById('removeItemButton'));
+    });
+  }
+
+  addElementByButton(list, arrayItems);
+  cleanListByButton();
   addElementByEnter(list, input);
-  clickRemoveButton(list);
-  saveList();
+  removeElementByButton(list);
+  saveListByButton();
 };
 
 let ajaxPost = function(path, param) {
@@ -24,8 +31,7 @@ let ajaxPost = function(path, param) {
   }
 };
 
-let arrayItems = document.getElementsByClassName('item');
-function getArrayValues() {
+function getArrayValues(arrayItems) {
   let arrayValueItem = [];
   for (let i = 0; i < arrayItems.length; i++) {
     arrayValueItem.push(arrayItems[i]['innerText']);
@@ -33,13 +39,7 @@ function getArrayValues() {
   return arrayValueItem;
 }
 
-for (let i = 0; i < arrayItems.length; i++) {
-  arrayItems[i].addEventListener('click', function() {
-    showElement(document.getElementById('removeItemButton'));
-  });
-}
-
-function clickAddButton(list) {
+function addElementByButton(list, arrayItems) {
   let elementsCount = arrayItems.length + 1;
   let addItemButton = document.getElementById('addItemButton');
   addItemButton.addEventListener('click', function(event) {
@@ -52,7 +52,7 @@ function clickAddButton(list) {
   });
 }
 
-function clickCleanButton() {
+function cleanListByButton() {
   let clearListButton = document.getElementById('clearListButton');
   clearListButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -73,7 +73,7 @@ function addElementByEnter(list, input) {
   }
 }
 
-function clickRemoveButton(list) {
+function removeElementByButton(list) {
   let removeItemButton = document.getElementById('removeItemButton');
   removeItemButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -82,7 +82,7 @@ function clickRemoveButton(list) {
   });
 }
 
-function saveList() {
+function saveListByButton() {
   let saveListButton = document.getElementById('saveListButton');
   saveListButton.addEventListener('click', function(event) {
     event.preventDefault();
@@ -120,7 +120,6 @@ function itemTemplate(inner) {
 
 function clearElement(element) {
   element.innerHTML = '';
-  getArrayValues();
 }
 
 function removeChecked(list) {

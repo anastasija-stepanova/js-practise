@@ -2,7 +2,6 @@
 require_once 'common.inc.php';
 if (isset($_POST['items_values']))
 {
-    $connection = dbConnect();
     $itemsValues = $_POST['items_values'];
     $result = dbQueryGetResult("SELECT * FROM list_items WHERE id = 1");
     if ($result)
