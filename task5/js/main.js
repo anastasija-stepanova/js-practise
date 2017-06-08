@@ -1,29 +1,108 @@
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
-canvas.width = 1400;
-canvas.height = 800;
+(function() {
+  let canvas = document.getElementById('canvas');
+  let ctx = canvas.getContext('2d');
+  canvas.width = 1400;
+  canvas.height = 800;
+  let canvasWidth = canvas.width;
+  let canvasHeight = canvas.height;
 
-function drawSky() {
+  let line = {
+    initialCoorX: null,
+    initialCoorY: null,
+    finiteCoorX: null,
+    finiteCoorY: null,
+    color: null,
+    lineWidth: null
+  };
+
+  let cloudModel = {
+    cloudCount: 5,
+    cloudCoordsX: [],
+    cloudCoordsY: [],
+    cloudSpeeds: []
+  };
+
+  let smokeModel = {
+    startPosition: 140,
+    smokePosition: 140,
+    startSpeed: 0.5,
+    smokeSpeed: 1
+  };
+
+  let rabbitModel = {
+    canJump: true,
+    startPositionY: 400,
+    positionY: 400,
+    jumpDelta: 0,
+    maxJumpDelta: 50,
+    jumpStep: 3
+  };
+
+  setInterval(function() {
+    rabbitModel.canJump = !rabbitModel.canJump;
+  }, 5000);
+
+  function animation() {
+    clearCanvas(ctx, canvasWidth, canvasHeight);
+    drawSky(ctx);
+    drawGrass(ctx, canvasWidth, canvasHeight, line);
+    drawSmoke(ctx);
+    drawHouse(ctx, line);
+    insertImageRabbit(ctx);
+    calcCoordsSmokeFrame(smokeModel);
+    renderingSmokeFrame(ctx, smokeModel);
+    calcCoordsCloudFrame(cloudModel, canvasWidth);
+    renderingCloudFrame(ctx, cloudModel);
+    calcCoordsRabbitFrame(rabbitModel);
+    renderingRabbitFrame(ctx, rabbitModel);
+    requestAnimationFrame(animation);
+  }
+
+  initializationArray(cloudModel, canvasWidth);
+  requestAnimationFrame(animation);
+})();
+
+function drawSky(ctx) {
   ctx.fillStyle = '#0071fd';
   ctx.fillRect(0, 0, 1400, 500);
 }
 
-function drawGrass() {
+function drawGrass(ctx, canvasWidth, canvasHeight, line) {
   ctx.fillStyle = '#2cb300';
   ctx.fillRect(0, 500, 1400, 400);
 
   let grassHeight = 30;
   let grassWidth = 15;
-  for (let j = 540; j < canvas.height; j += 50) {
-    for (let i = 10; i < canvas.width; i += 60) {
-      drawLine(i, j, i, (j - grassHeight), '#203A27', 2);
-      drawLine(i, j, (i - grassWidth), (j - grassHeight), '#203A27', 2);
-      drawLine(i, j, (i + grassWidth), (j - grassHeight), '#203A27', 2);
+  for (let j = 540; j < canvasHeight; j += 50) {
+    for (let i = 10; i < canvasWidth; i += 60) {
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
+
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i - grassWidth;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
+
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i + grassWidth;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
     }
   }
 }
 
-function drawHouse() {
+function drawHouse(ctx, line) {
   ctx.fillStyle = '#8c4c00';
   ctx.fillRect(150, 350, 400, 350);
 
@@ -50,111 +129,123 @@ function drawHouse() {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(250, 400, 200, 200);
 
-  drawLine(350, 400, 350, 600, '#523008', 7);
-  drawLine(250, 465, 450, 465, '#523008', 7);
+  line.initialCoorX = 350;
+  line.initialCoorY = 400;
+  line.finiteCoorX = 350;
+  line.finiteCoorY = 600;
+  line.color = '#523008';
+  line.lineWidth = 7;
+  drawLine(ctx, line);
+
+  line.initialCoorX = 250;
+  line.initialCoorY = 465;
+  line.finiteCoorX = 450;
+  line.finiteCoorY = 465;
+  line.color = '#523008';
+  line.lineWidth = 7;
+  drawLine(ctx, line);
 
 }
 
-function clearCanvas() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  drawSky();
-  drawGrass();
-  drawSmoke();
-  drawHouse();
-  insertImageRabbit();
+function clearCanvas(ctx, canvasWidth, canvasHeight) {
+  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 }
 
-let cloudsCount = 3;
-let setCloudX = [];
-let setCloudY = [];
-let setSpeed = [];
-
-initializationArray();
-function moveClouds() {
-  for (let i = 0; i < cloudsCount; i++) {
-    drawCloudsByBezier(setCloudX[i], setCloudY[i]);
-    setCloudX[i] += setSpeed[i];
-    if (setCloudX[i] > canvas.width) {
-      setCloudX[i] = -300;
-      setCloudY[i] = Math.random() * 70 + 70;
-      setSpeed[i] = Math.random() + 0.1;
-    }
+function initializationArray(cloudModel, canvasWidth) {
+  for (let i = 0; i < cloudModel.cloudCount; i++) {
+    cloudModel.cloudCoordsX.push(Math.random() * canvasWidth);
+    cloudModel.cloudCoordsY.push(Math.random() * 70 + 70);
+    cloudModel.cloudSpeeds.push(Math.random() + 0.1);
   }
 }
 
-function drawSmoke(initialCoorY) {
+function calcCoordsCloudFrame(cloudModel, canvasWidth) {
+  for (let i = 0; i < cloudModel.cloudCount; i++) {
+    cloudModel.cloudCoordsX[i] += cloudModel.cloudSpeeds[i];
+    if (cloudModel.cloudCoordsX[i] > canvasWidth) {
+      cloudModel.cloudCoordsX[i] = -300;
+      cloudModel.cloudCoordsY[i] = Math.random() * 70 + 70;
+      cloudModel.cloudSpeeds[i] = Math.random() + 0.1;
+    }
+  }
+  return [cloudModel.cloudCoordsX, cloudModel.cloudCoordsY];
+}
+
+function renderingCloudFrame(ctx, cloudModel) {
+  let positions = calcCoordsCloudFrame(cloudModel);
+
+  positions[0].forEach(function(item, i) {
+    drawCloudsByBezier(ctx, positions[0][i], positions[1][i]);
+  });
+}
+
+function drawSmoke(ctx, initialCoorY) {
   ctx.beginPath();
   ctx.arc(455, initialCoorY, 20, 0, 2 * Math.PI, false);
   ctx.fillStyle = '#a2a0a0';
   ctx.fill();
 }
 
-let startSmokePosition = 140;
-let smokePosition = startSmokePosition;
-let startSpeed = 1;
-let smokeSpeed = startSpeed;
-
-function moveSmoke() {
-  if (smokePosition < startSmokePosition / 2) {
-    smokeSpeed = startSpeed * 3;
-  } else if (smokePosition < startSmokePosition / 3) {
-    smokeSpeed = startSpeed * 4;
+function calcCoordsSmokeFrame(smokeModel) {
+  if (smokeModel.smokePosition < smokeModel.startPosition / 2) {
+    smokeModel.smokeSpeed = smokeModel.startSpeed * 3;
+  } else if (smokeModel.smokePosition < smokeModel.startPosition / 3) {
+    smokeModel.smokeSpeed = smokeModel.startSpeed * 4;
   } else {
-    smokeSpeed = startSpeed;
+    smokeModel.smokeSpeed = smokeModel.startSpeed;
   }
 
-  if (smokePosition > 0) {
-    smokePosition -= smokeSpeed;
+  if (smokeModel.smokePosition > 0) {
+    smokeModel.smokePosition -= smokeModel.smokeSpeed;
   }
   else {
-    smokePosition = startSmokePosition;
+    smokeModel.smokePosition = smokeModel.startPosition;
   }
-  drawSmoke(smokePosition);
+
+  return smokeModel.smokePosition;
 }
 
-function insertImageRabbit(initialCoorX, initialCoorY) {
+function renderingSmokeFrame(ctx, smokeModel) {
+  drawSmoke(ctx, calcCoordsSmokeFrame(smokeModel));
+}
+
+function insertImageRabbit(ctx, initialCoorX, initialCoorY) {
   let rabbit = new Image();
   rabbit.src = 'images/rabbit.png';
   ctx.drawImage(rabbit, initialCoorX, initialCoorY, 115, 250);
 }
 
-let startRabbitPositionY = 400;
-let rabbitPositionY = startRabbitPositionY;
-let jumpDelta = 0;
-let maxJumpDelta = 50;
-let jumpStep = 5;
-let canJump = true;
-
-setInterval(function() {
-  canJump = !canJump;
-}, 5000);
-
-function jumpRabbit() {
-  insertImageRabbit(800, rabbitPositionY);
-  jumpDelta = Math.abs(startRabbitPositionY - rabbitPositionY);
-  if (canJump) {
-    if (jumpDelta > maxJumpDelta) {
-      jumpStep *= -1;
-      rabbitPositionY += jumpStep;
-      if (rabbitPositionY > startRabbitPositionY) {
-        canJump = false;
+function calcCoordsRabbitFrame(rabbitModel) {
+  rabbitModel.jumpDelta = Math.abs(rabbitModel.startPositionY - rabbitModel.positionY);
+  if (rabbitModel.canJump) {
+    if (rabbitModel.jumpDelta > rabbitModel.maxJumpDelta) {
+      rabbitModel.jumpStep *= -1;
+      rabbitModel.positionY += rabbitModel.jumpStep;
+      if (rabbitModel.positionY > rabbitModel.startPositionY) {
+        rabbitModel.canJump = false;
       }
     } else {
-      rabbitPositionY += jumpStep;
+      rabbitModel.positionY += rabbitModel.jumpStep;
     }
   }
+
+  return rabbitModel.positionY;
 }
 
-function drawLine(initialCoorX, initialCoorY, finiteCoorX, finiteCoorY, color, lineWidth) {
+function renderingRabbitFrame(ctx, rabbitModel) {
+  insertImageRabbit(ctx, 800, calcCoordsRabbitFrame(rabbitModel));
+}
+
+function drawLine(ctx, line) {
   ctx.beginPath();
-  ctx.lineWidth = lineWidth;
-  ctx.strokeStyle = color;
-  ctx.moveTo(initialCoorX, initialCoorY);
-  ctx.lineTo(finiteCoorX, finiteCoorY);
+  ctx.lineWidth = line.lineWidth;
+  ctx.strokeStyle = line.color;
+  ctx.moveTo(line.initialCoorX, line.initialCoorY);
+  ctx.lineTo(line.finiteCoorX, line.finiteCoorY);
   ctx.stroke();
 }
 
-function drawCloudsByBezier(x, y) {
+function drawCloudsByBezier(ctx, x, y) {
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.bezierCurveTo(x, y, (x - 45), (y - 70), (x + 70), (y - 25));
@@ -165,21 +256,3 @@ function drawCloudsByBezier(x, y) {
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
   ctx.fill();
 }
-
-function initializationArray() {
-  for (let i = 0; i < cloudsCount; i++) {
-    setCloudX.push(Math.random() * canvas.width);
-    setCloudY.push(Math.random() * 70 + 70);
-    setSpeed.push(Math.random() + 1);
-  }
-}
-
-function animation() {
-  clearCanvas();
-  moveClouds();
-  moveSmoke();
-  jumpRabbit();
-  requestAnimationFrame(animation);
-}
-
-requestAnimationFrame(animation);

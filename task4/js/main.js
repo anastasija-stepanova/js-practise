@@ -1,29 +1,67 @@
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
-canvas.width = 1400;
-canvas.height = 800;
+(function() {
+  let canvas = document.getElementById('canvas');
+  let ctx = canvas.getContext('2d');
+  canvas.width = 1400;
+  canvas.height = 800;
+  let canvasWidth = canvas.width;
+  let canvasHeight = canvas.height;
 
-function drawSky() {
+  let line = {
+    initialCoorX: null,
+    initialCoorY: null,
+    finiteCoorX: null,
+    finiteCoorY: null,
+    color: null,
+    lineWidth: null
+  };
+
+  drawSky(ctx);
+  drawGrass(ctx, canvasWidth, canvasHeight, line);
+  drawHouse(ctx, line);
+  drawClouds(ctx);
+}());
+
+function drawSky(ctx) {
   ctx.fillStyle = '#0071fd';
   ctx.fillRect(0, 0, 1400, 500);
 }
 
-function drawGrass() {
+function drawGrass(ctx, canvasWidth, canvasHeight, line) {
   ctx.fillStyle = '#2cb300';
   ctx.fillRect(0, 500, 1400, 400);
 
   let grassHeight = 30;
   let grassWidth = 15;
-  for (let j = 540; j < canvas.height; j += 50) {
-    for (let i = 10; i < canvas.width; i += 60) {
-      drawLine(i, j, i, (j - grassHeight), '#203A27', 2);
-      drawLine(i, j, (i - grassWidth), (j - grassHeight), '#203A27', 2);
-      drawLine(i, j, (i + grassWidth), (j - grassHeight), '#203A27', 2);
+  for (let j = 540; j < canvasHeight; j += 50) {
+    for (let i = 10; i < canvasWidth; i += 60) {
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
+
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i - grassWidth;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
+
+      line.initialCoorX = i;
+      line.initialCoorY = j;
+      line.finiteCoorX = i + grassWidth;
+      line.finiteCoorY = j - grassHeight;
+      line.color = '#203A27';
+      line.lineWidth = 2;
+      drawLine(ctx, line);
     }
   }
 }
 
-function drawHouse() {
+function drawHouse(ctx, line) {
   ctx.fillStyle = '#8c4c00';
   ctx.fillRect(150, 350, 400, 350);
 
@@ -50,27 +88,40 @@ function drawHouse() {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(250, 400, 200, 200);
 
-  drawLine(350, 400, 350, 600, '#523008', 7);
-  drawLine(250, 465, 450, 465, '#523008', 7);
+  line.initialCoorX = 350;
+  line.initialCoorY = 400;
+  line.finiteCoorX = 350;
+  line.finiteCoorY = 600;
+  line.color = '#523008';
+  line.lineWidth = 7;
+  drawLine(ctx, line);
+
+  line.initialCoorX = 250;
+  line.initialCoorY = 465;
+  line.finiteCoorX = 450;
+  line.finiteCoorY = 465;
+  line.color = '#523008';
+  line.lineWidth = 7;
+  drawLine(ctx, line);
 
 }
 
-function drawClouds() {
-  drawCloudByBezier(100, 100);
-  drawCloudByBezier(500, 110);
-  drawCloudByBezier(950, 120);
+function drawClouds(ctx) {
+  drawCloudByBezier(ctx, 100, 100);
+  drawCloudByBezier(ctx, 500, 110);
+  drawCloudByBezier(ctx, 950, 120);
 }
 
-function drawLine(initialCoorX, initialCoorY, finiteCoorX, finiteCoorY, color, lineWidth) {
+function drawLine(ctx, line) {
   ctx.beginPath();
-  ctx.lineWidth = lineWidth;
-  ctx.strokeStyle = color;
-  ctx.moveTo(initialCoorX, initialCoorY);
-  ctx.lineTo(finiteCoorX, finiteCoorY);
+  ctx.lineWidth = line.lineWidth;
+  ctx.strokeStyle = line.color;
+  ctx.moveTo(line.initialCoorX, line.initialCoorY);
+  ctx.lineTo(line.finiteCoorX, line.finiteCoorY);
   ctx.stroke();
 }
 
-function drawCloudByBezier(x, y) {
+function drawCloudByBezier(ctx, x, y) {
   ctx.beginPath();
   ctx.moveTo(x, y);
   ctx.bezierCurveTo(x, y, (x - 45), (y - 70), (x + 70), (y - 25));
@@ -81,8 +132,3 @@ function drawCloudByBezier(x, y) {
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
   ctx.fill();
 }
-
-drawSky();
-drawGrass();
-drawHouse();
-drawClouds();
