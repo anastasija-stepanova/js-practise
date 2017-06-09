@@ -1,23 +1,14 @@
 (function() {
   let canvas = document.getElementById('canvas');
   let ctx = canvas.getContext('2d');
-  canvas.width = 1400;
-  canvas.height = 800;
-  let canvasWidth = canvas.width;
-  let canvasHeight = canvas.height;
-
-  let line = {
-    initialCoorX: null,
-    initialCoorY: null,
-    finiteCoorX: null,
-    finiteCoorY: null,
-    color: null,
-    lineWidth: null
-  };
+  let canvasWidth = 1400;
+  let canvasHeight = 800;
+  canvas.width = canvasWidth;
+  canvas.height = canvasHeight;
 
   drawSky(ctx);
-  drawGrass(ctx, canvasWidth, canvasHeight, line);
-  drawHouse(ctx, line);
+  drawGrass(ctx, canvasWidth, canvasHeight);
+  drawHouse(ctx);
   drawClouds(ctx);
 }());
 
@@ -26,7 +17,7 @@ function drawSky(ctx) {
   ctx.fillRect(0, 0, 1400, 500);
 }
 
-function drawGrass(ctx, canvasWidth, canvasHeight, line) {
+function drawGrass(ctx, canvasWidth, canvasHeight) {
   ctx.fillStyle = '#2cb300';
   ctx.fillRect(0, 500, 1400, 400);
 
@@ -34,6 +25,15 @@ function drawGrass(ctx, canvasWidth, canvasHeight, line) {
   let grassWidth = 15;
   for (let j = 540; j < canvasHeight; j += 50) {
     for (let i = 10; i < canvasWidth; i += 60) {
+      let line = {
+        initialCoorX: null,
+        initialCoorY: null,
+        finiteCoorX: null,
+        finiteCoorY: null,
+        color: null,
+        lineWidth: null
+      };
+
       line.initialCoorX = i;
       line.initialCoorY = j;
       line.finiteCoorX = i;
@@ -42,26 +42,16 @@ function drawGrass(ctx, canvasWidth, canvasHeight, line) {
       line.lineWidth = 2;
       drawLine(ctx, line);
 
-      line.initialCoorX = i;
-      line.initialCoorY = j;
       line.finiteCoorX = i - grassWidth;
-      line.finiteCoorY = j - grassHeight;
-      line.color = '#203A27';
-      line.lineWidth = 2;
       drawLine(ctx, line);
 
-      line.initialCoorX = i;
-      line.initialCoorY = j;
       line.finiteCoorX = i + grassWidth;
-      line.finiteCoorY = j - grassHeight;
-      line.color = '#203A27';
-      line.lineWidth = 2;
       drawLine(ctx, line);
     }
   }
 }
 
-function drawHouse(ctx, line) {
+function drawHouse(ctx) {
   ctx.fillStyle = '#8c4c00';
   ctx.fillRect(150, 350, 400, 350);
 
@@ -88,6 +78,15 @@ function drawHouse(ctx, line) {
   ctx.fillStyle = '#ffffff';
   ctx.fillRect(250, 400, 200, 200);
 
+  let line = {
+    initialCoorX: null,
+    initialCoorY: null,
+    finiteCoorX: null,
+    finiteCoorY: null,
+    color: null,
+    lineWidth: null
+  };
+
   line.initialCoorX = 350;
   line.initialCoorY = 400;
   line.finiteCoorX = 350;
@@ -100,8 +99,6 @@ function drawHouse(ctx, line) {
   line.initialCoorY = 465;
   line.finiteCoorX = 450;
   line.finiteCoorY = 465;
-  line.color = '#523008';
-  line.lineWidth = 7;
   drawLine(ctx, line);
 
 }
