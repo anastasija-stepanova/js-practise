@@ -2,7 +2,7 @@
 
 class Tv
 {
-    const defaultChannel = 1;
+    const DEFAULT_CHANNEL = 1;
     private $onState;
     private $channelNum;
     private $lastVisibleChannel = false;
@@ -19,7 +19,7 @@ class Tv
             $this->onState = true;
             if (!($this->lastVisibleChannel))
             {
-                $this->switchChannel($this::defaultChannel);
+                $this->switchChannel($this::DEFAULT_CHANNEL);
             }
             else
             {
@@ -41,9 +41,9 @@ class Tv
     {
         if ($channelNum === null)
         {
-            $this->channelNum = $this::defaultChannel;
+            $this->channelNum = $this::DEFAULT_CHANNEL;
         }
-        elseif (($channelNum <= $this->amountChannels) && ($channelNum >= $this::defaultChannel))
+        elseif (($channelNum <= $this->amountChannels) && ($channelNum >= $this::DEFAULT_CHANNEL))
         {
             $this->channelNum = $channelNum;
         }

@@ -2,36 +2,38 @@
 
 class Calculator
 {
-    private $arg1;
-    private $arg2;
-    private $operation;
+    const SUM = 'sum';
+    const SUB = 'sub';
+    const MUL = 'mul';
+    const DIV = 'div';
 
-    private function calculate()
+    public function calculate($arg1, $arg2, $operation)
     {
-        switch ($this->operation)
+        $result = null;
+        switch ($operation)
         {
-            case 'sum':
-                return $this->arg1 + $this->arg2;
+            case $this::SUM:
+                $result = $arg1 + $arg2;
                 break;
-            case 'sub':
-                return $this->arg1 - $this->arg2;
+            case $this::SUB:
+                $result = $arg1 - $arg2;
                 break;
-            case 'mul':
-                return $this->arg1 * $this->arg2;
+            case $this::MUL:
+                $result = $arg1 * $arg2;
                 break;
-            case 'div':
-                return $this->arg1 / $this->arg2;
-                break;
+            case $this::DIV:
+                if ($arg2 != 0)
+                {
+                    $result = $arg1 / $arg2;
+                    break;
+                }
+                else
+                {
+                    return 'div0';
+                }
             default:
-                return 'Неизвестная операция';
+                return 'undefinedOp';
         }
-    }
-
-    public function getResult($arg1, $arg2, $operation)
-    {
-        $this->arg1 = $arg1;
-        $this->arg2 = $arg2;
-        $this->operation = $operation;
-        return $this->calculate();
+        return $result;
     }
 }

@@ -1,14 +1,18 @@
 <?php
 require_once 'Calculator.php';
-$calc = new Calculator();
 if (isset($_GET['arg1']) && isset($_GET['arg2']) && isset($_GET['op']))
 {
+    $calc = new Calculator();
     $arg1 = $_GET['arg1'];
     $arg2 = $_GET['arg2'];
     $op = $_GET['op'];
-    if ($op == 'div' && $arg2 === 0)
+    if ($calc->calculate($arg1, $arg2, $op) == 'div0')
     {
         echo 'Попытка деления на 0';
+    }
+    elseif ($calc->calculate($arg1, $arg2, $op) == 'undefinedOp')
+    {
+        echo 'Неизвестная операция';
     }
     elseif (!(is_numeric($arg1)) || !(is_numeric($arg2)))
     {
@@ -16,12 +20,10 @@ if (isset($_GET['arg1']) && isset($_GET['arg2']) && isset($_GET['op']))
     }
     else
     {
-        $result = $calc->getResult($arg1, $arg2, $op);
-        echo $result;
+        echo $calc->calculate($arg1, $arg2, $op);
     }
 }
 else
 {
     echo 'Переданы не все параметры!';
 }
-
